@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar } from "./components";
+import { Navbar, PostSection } from "./components";
 
 function App() {
     return (
         <div>
             <Navbar />
+            <PostSection />
         </div>
     );
 }

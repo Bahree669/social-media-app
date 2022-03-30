@@ -1,0 +1,21 @@
+.avatar-img,
+.avatar-placeholder {
+    height: 40px;
+    width: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-placeholder {
+    background: var(--white-two);
+    color: var(--black-three);
+}
+
+.avatar-img img {
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -5,12 +5,13 @@
 
     --white-one: #fff;
     --white-two: #f6f6f6;
+    --white-three: #f1f1f1;
 
     --body-font: 14px;
-    --heading-font: 18px;
+    --heading-font: 16px;
     --small-font: 12px;
 
-    --font-sans: "Roboto Condensed";
+    --font-sans: "Karla";
 }
 
 * {
@@ -21,7 +22,7 @@
 
 /* TYPOGRAPHY */
 .body-font {
-    color: #333;
+    color: var(--black-two);
     font-family: var(--font-sans);
     font-size: var(--body-font);
 }
@@ -30,4 +31,11 @@
     font-family: var(--font-sans);
     color: var(--black-three);
     font-size: var(--small-font);
+}
+
+.heading-font {
+    font-family: var(--font-sans);
+    color: var(--black-one);
+    font-size: var(--body-font);
+    font-weight: 700;
 }
