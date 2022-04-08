@@ -11,7 +11,7 @@ function Avatar({ imageUrl }) {
                 </div>
             ) : (
                 <div className='avatar-placeholder'>
-                    <i className='bx bxs-user'></i>
+                    <i className='ri-user-3-fill'></i>
                 </div>
             )}
         </div>

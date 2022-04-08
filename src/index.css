@@ -1,23 +1,37 @@
 :root {
-    --black-one: #111;
-    --black-two: #222;
-    --black-three: #333;
+    --blue: #1DA1F2;
+    --blue-hover: #32a9f3;
+    --black: #14171A;
+    --black-hover: #181b1f;
+    --dark-grey: #657786;
+    --light-grey: #AAB8C2;
+    --extra-light-grey: #E1E8ED;
+    --super-light-grey: #F5F8FA;
+    --white: #fff;
+    
+    --red-error: rgb(226, 0, 0);
+    --green-success: rgb(0, 175, 0);
 
-    --white-one: #fff;
-    --white-two: #f6f6f6;
-    --white-three: #f1f1f1;
+    --accent-color: #fcb74;
 
-    --body-font: 14px;
-    --heading-font: 16px;
-    --small-font: 12px;
+    --body-font: 16px;
+    --body-font: 1rem;
+    --heading-font: 18px;
+    --heading-font: 1.2rem;
+    --small-font: .8rem;
 
-    --font-sans: "Karla";
+    --font-sans: "Poppins";
+    --border-style: solid 1px rgb(185, 185, 185);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background: var(--super-light-grey);
 }
 
 /* TYPOGRAPHY */
@@ -36,6 +50,6 @@
 .heading-font {
     font-family: var(--font-sans);
     color: var(--black-one);
-    font-size: var(--body-font);
-    font-weight: 700;
+    font-size: var(--heading-font);
+    font-weight: bold;
 }

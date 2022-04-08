@@ -15,7 +15,7 @@
 }
 
 .popup-container {
-    background: var(--white-one);
+    background: var(--white);
     border-radius: 1em;
 
     display: flex;
@@ -52,21 +52,21 @@
     font-size: var(--body-font);
     border-radius: 10px;
     border: none;
-    background: var(--white-two);
+    background: var(--extra-light-grey);
     cursor: pointer;
 }
 
 .popup-action-continue {
-    background: var(--black-one);
-    color: var(--white-one);
+    background: var(--black);
+    color: var(--white);
 }
 .popup-action:hover {
-    background: var(--white-three);
+    background: var(--super-light-grey);
 }
 .popup-action-continue:hover {
-    background: var(--black-two);
+    background: var(--black-hover);
 }
 
 .popup-action-continue:focus {
-    background: var(--black-two);
+    background: var(--black-hover);
 }

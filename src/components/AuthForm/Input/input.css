@@ -1,0 +1,60 @@
+.auth-input-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+}
+
+.auth-input-container > label {
+    font-family: var(--font-sans);
+    text-transform: capitalize;
+    font-size: var(--body-font);
+    color: var(--black);
+    font-weight: bold;
+}
+
+.auth-input {
+    position: relative;
+    height: 2.5em;
+}
+
+.auth-input > input {
+    background: var(--super-light-grey);
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+
+    font-family: var(--font-sans);
+    color: var(--dark-grey);
+
+    height: inherit;
+    padding: 0 1em;
+}
+
+.auth-input > input:focus {
+    border: none;
+}
+
+.auth-input-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background: none;
+
+    height: 100%;
+    width: 3em;
+    border-radius: 0 10px 10px 0;
+
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+
+    border: none;
+}
+
+.auth-input-button > i {
+    color: var(--black-one);
+    font-size: 1rem;
+}
+
+

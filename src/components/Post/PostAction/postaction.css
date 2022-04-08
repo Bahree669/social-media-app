@@ -1,0 +1,19 @@
+.post-action-container {
+    padding: 1em 1.5em;
+    border-top: solid 1px var(--extra-light-grey);
+}
+
+.post-action {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.post-action-button {
+    display: flex;
+    gap: .1em;
+    font-size: var(--body-font);
+    color: var(--black);
+    background: none;
+    border: none;
+}

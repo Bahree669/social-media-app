@@ -10,8 +10,8 @@
 }
 
 .avatar-placeholder {
-    background: var(--white-two);
-    color: var(--black-three);
+    background: var(--super-light-grey);
+    color: var(--dark-grey);
 }
 
 .avatar-img img {

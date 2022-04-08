@@ -1,0 +1,33 @@
+/* secondary navigation */
+.secondary-nav {
+    margin-bottom: 3em;
+}
+
+.secondary-nav-container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.secondary-nav-container button {
+    border: none;
+    height: 20px;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    background: none;
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    color: var(--dark-grey);
+    cursor: pointer;
+}
+
+.secondary-nav-container h1 {
+    font-family: var(--font-sans);
+    font-size: var(--body-font);
+    font-weight: bold;
+    color: var(--black);
+}
+
+.secondary-nav-container div {
+    opacity: 0;
+}
