@@ -85,27 +85,12 @@
     margin-bottom: .5em;
 }
 
+.caption-indicator-full {
+    background: var(--red-error);
+    color: var(--white);
+}
+
 .post-form-content {
     display: flex;
     gap: 1em;
-}
-
-.post-image-thumb {
-    display: flex;
-    align-items: center;
-    gap: .5em;
-    flex-wrap: wrap;
-}
-
-.image-thumb {
-    height: 50px;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: coral;
-}
-
-.image-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
 }

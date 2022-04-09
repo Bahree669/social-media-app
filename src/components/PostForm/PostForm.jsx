@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 import SecondaryNavbar from "../Navbar/SecondaryNavbar";
+import Thumbnails from "./Thumbnails/Thumbnails";
 
 import "./postform.css";
 
@@ -9,9 +11,6 @@ function PostForm() {
         caption: "",
         selectedFiles: [],
     });
-
-    const [imgThumb, setImgThumb] = useState([]);
-
     const [cptIndicator, setCptIndicator] = useState(postData.caption.length);
     const [uploadProcess, setUploadProcess] = useState({ state: false, text: "" });
 
@@ -19,69 +18,44 @@ function PostForm() {
         setCptIndicator(postData.caption.length);
     }, [postData.caption.length]);
 
-    // navigation
     const navigate = useNavigate();
 
     function backButton() {
         navigate("/");
     }
 
-    // handling submit
-    let data;
-    async function handleSubmit(e) {
+    // Submit post action
+    function handleSubmit(e) {
         e.preventDefault();
 
-        // setUploadProcess({ ...uploadProcess, state: true, text: "Uploading..." });
-        // if (postData.caption.length || postData.selectedFiles.length) {
-        //     // data = await dispatch(uploadPost(postData));
-        // }
-
-        // if (typeof data === "object") {
-        //     setUploadProcess({ ...uploadProcess, state: true, text: "Uploaded!" });
-
-        //     setTimeout(() => {
-        //         setUploadProcess({ ...uploadProcess, state: false, text: "" });
-        //     }, 1000);
-        // }
-
-        console.log(postData.selectedFiles);
+        console.log(postData);
     }
 
-    function handleFileUpload(e) {
-        let filesArray = [];
-        for (let i = 0; i < e.target.files.length; i++) {
-            filesArray.push(e.target.files[i]);
-        }
-
-        const thumbs = filesArray.map((file, i) => URL.createObjectURL(file));
-        setImgThumb(thumbs);
+    function previewFiles(e) {
+        let files = e.target.files;
 
         let data = [];
-        filesArray.forEach(async (file) => {
-            const base64 = await convertToBase64(file);
-            console.log(base64);
-            data.push(base64);
-        });
+        function readAndPreview(file) {
+            let reader = new FileReader();
 
-        // setPostData({ ...postData, selectedFiles: data });
+            reader.addEventListener(
+                "load",
+                function () {
+                    data.push({ id: nanoid(), img: this.result });
+                    setPostData({ ...postData, selectedFiles: data });
+                },
+                false
+            );
+
+            reader.readAsDataURL(file);
+        }
+
+        if (files) {
+            [].forEach.call(files, readAndPreview);
+        }
     }
 
-    // Convert the image file to base64
-    function convertToBase64(files) {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(files);
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    }
-
-    // form notif compponent
+    // Upload process component
     function PostFromNotif() {
         return (
             <div className='post-form-notif'>
@@ -91,11 +65,19 @@ function PostForm() {
     }
 
     // Picture input field
+    // No ugly image input
     const fileElem = useRef();
     function imgInputField() {
         if (fileElem.current) {
             fileElem.current.click();
         }
+    }
+
+    // We need the file id to remove it from the state
+    function removeImageFromState(fileImg) {
+        const state = postData.selectedFiles.slice();
+        const newState = state.filter((state) => state !== fileImg);
+        setPostData({ ...postData, selectedFiles: newState });
     }
 
     return (
@@ -128,25 +110,14 @@ function PostForm() {
                                 name='selectedFile'
                                 multiple={true}
                                 accept='image/*'
-                                onChange={handleFileUpload}
+                                onChange={previewFiles}
                             />
                             <button type='button' className='post-form-image-button' onClick={imgInputField}>
                                 <i className='ri-image-fill'></i>
                             </button>
                         </div>
 
-                        <div className='post-image-thumb'>
-                            {imgThumb.map((thumb) => (
-                                <div className='image-thumb'>
-                                    <img
-                                        src={thumb}
-                                        onLoad={function (e) {
-                                            URL.revokeObjectURL(e.target.src);
-                                        }}
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                        <Thumbnails imgThumb={postData?.selectedFiles} removeImageFromState={removeImageFromState} />
                     </div>
 
                     <button className='post-form-submit' type='submit' onClick={handleSubmit}>

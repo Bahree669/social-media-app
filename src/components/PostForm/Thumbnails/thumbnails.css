@@ -1,0 +1,36 @@
+.post-thumbnails {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.post-thumb {
+    height: 50px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--super-light-grey);
+    border-radius: 10px;
+    position: relative;
+}
+
+.post-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.post-thumbnails-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: var(--red-error);
+    height: fit-content;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: .1em;
+    color: var(--white);
+    cursor: pointer;
+}

@@ -22,6 +22,8 @@ function PostSection() {
         });
     }, []);
 
+    console.log(posts);
+
     function handleOpenPopup() {
         setShowPopup((prev) => !prev);
     }

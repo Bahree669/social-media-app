@@ -27,7 +27,7 @@ const apiCallMiddleware =
             if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
         } catch (error) {
             // General error dispatch
-            dispatch(actions.apiCallFailed(error));
+            dispatch(actions.apiCallFailed(error.message));
             // Specific error dispatch
             if (onError) dispatch({ type: onError, payload: error.message });
         }
