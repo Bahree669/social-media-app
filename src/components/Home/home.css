@@ -1,0 +1,27 @@
+.home {
+    padding: 5em 0em 2em 0em;
+}
+
+.home-container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 1em;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.home-post {
+    width: calc(800px - 300px);
+}
+
+.home-user {
+    width: calc(800px - 500px - 1em);
+}
+
+@media screen and (max-width: 600px) {
+    .home-user {
+        display: none;
+    }
+}

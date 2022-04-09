@@ -19,3 +19,25 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.big-avatar-img,
+.big-avatar-placeholder {
+    height: 80px;
+    width: 80px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-avatar-placeholder {
+    background: var(--super-light-grey);
+    color: var(--dark-grey);
+}
+
+.big-avatar-img img {
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}

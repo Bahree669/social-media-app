@@ -23,7 +23,7 @@
 
 .secondary-nav-container h1 {
     font-family: var(--font-sans);
-    font-size: var(--body-font);
+    font-size: var(--heading-font);
     font-weight: bold;
     color: var(--black);
 }

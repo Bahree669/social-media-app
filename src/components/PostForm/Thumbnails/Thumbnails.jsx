@@ -20,7 +20,9 @@ function Thumbnails({ imgThumb, removeImageFromState }) {
             ))}
         </div>
     ) : (
-        <div>There are no images</div>
+        <div className='post-thumbnails-caption'>
+            <p>Add some images (jpeg. jpg. png.)</p>
+        </div>
     );
 }
 

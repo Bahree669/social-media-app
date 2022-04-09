@@ -1,0 +1,54 @@
+.user-aside {
+    background: var(--white);
+    position: sticky;
+    top: 5em;
+    border: solid 1px var(--extra-light-grey);
+}
+
+.user-aside-avatar {
+    height: 10em;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    border-bottom: solid 1px var(--extra-light-grey);
+}
+
+.user-aside-menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4em;
+    padding: 1em;
+}
+
+.user-aside-action {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5em;
+}
+
+.user-aside-action div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-family: var(--font-sans);
+    color: var(--black);
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: .5em;
+    border-radius: 10px;
+}
+
+.user-aside-action div:hover {
+    background: var(--super-light-grey);
+}
+
+.user-aside-btn {
+    background: var(--white);
+    border: none;
+    font-family: var(--font-sans);
+    font-size: var(--body-font);
+    padding: .2em;
+    border: solid 2px var(--red-error);
+    border-radius: 10px;
+    cursor: pointer;
+}

@@ -36,18 +36,21 @@ function PostForm() {
 
         let data = [];
         function readAndPreview(file) {
-            let reader = new FileReader();
+            // Make sure `file.name` matches our extensions criteria
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                let reader = new FileReader();
 
-            reader.addEventListener(
-                "load",
-                function () {
-                    data.push({ id: nanoid(), img: this.result });
-                    setPostData({ ...postData, selectedFiles: data });
-                },
-                false
-            );
+                reader.addEventListener(
+                    "load",
+                    function () {
+                        data.push({ id: nanoid(), img: this.result });
+                        setPostData({ ...postData, selectedFiles: data });
+                    },
+                    false
+                );
 
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
+            }
         }
 
         if (files) {

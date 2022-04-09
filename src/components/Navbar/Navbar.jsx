@@ -4,6 +4,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import decode from "jwt-decode";
 
 import "./navbar.css";
+import BigAvatar from "../Avatar/BigAvatar";
 
 function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -41,21 +42,40 @@ function Navbar() {
     return (
         <header className='header'>
             <nav className='header-navigation'>
-                <div onClick={handleMenu}>
-                    <Avatar imageUrl={""} />
-                </div>
-
-                <button className='header-action-btn'>
+                <button onClick={handleMenu} className='header-action-btn'>
                     <i className='ri-settings-5-line'></i>
                 </button>
 
-                {openMenu && (
+                <div className='header-avatar'>
+                    <Avatar imageUrl={""} />
+                </div>
+
+                <div className={`header-action-container ${openMenu && "open"}`}>
                     <div className='header-menu'>
-                        <button className='header-menu-button danger' onClick={logOut}>
-                            {user ? "Log Out" : "Log In"} {user && <strong>{user.userName}</strong>}
-                        </button>
+                        <div className='header-menu-avatar'>
+                            <BigAvatar imageUrl={""} />
+                        </div>
+
+                        <div className='header-menu-action'>
+                            <div className='header-action-primary'>
+                                <div>
+                                    <i className='ri-user-3-fill'></i>
+                                    <p>profile</p>
+                                </div>
+                                <div>
+                                    <i className='ri-bookmark-line'></i>
+                                    <p>saved posts</p>
+                                </div>
+                            </div>
+
+                            <button className='header-menu-button' onClick={logOut}>
+                                {user ? "Log Out" : "Log In"} {user && <strong>{user.userName}</strong>}
+                            </button>
+                        </div>
                     </div>
-                )}
+
+                    <div onClick={handleMenu} className='header-backdrop'></div>
+                </div>
 
                 <Link to={"/makepost"} className='navbar-add-post'>
                     <button>

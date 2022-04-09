@@ -34,3 +34,11 @@
     color: var(--white);
     cursor: pointer;
 }
+
+.post-thumbnails-caption {
+    color: var(--dark-grey);
+    font-family: var(--font-sans);
+    font-size: .7rem;
+    display: flex;
+    align-items: center;
+}
