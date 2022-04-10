@@ -35,7 +35,7 @@
     font-family: var(--font-sans);
     color: var(--black-one);
     font-size: var(--heading-font);
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .popup-actions {

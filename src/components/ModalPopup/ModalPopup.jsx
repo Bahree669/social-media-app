@@ -1,12 +1,14 @@
 import React from "react";
-import configureStore from "../../store/configureStore";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../store/postReducer";
 import "./modalpopup.css";
 
-function ModalPopup({ deletePopup, postId }) {
-    const store = configureStore();
+function ModalPopup({ deleteModal, postId }) {
+    const dispatch = useDispatch();
 
-    function deletePost() {
-        console.log(postId);
+    function removePost() {
+        dispatch(deletePost(postId));
+        deleteModal();
     }
 
     return (
@@ -18,12 +20,12 @@ function ModalPopup({ deletePopup, postId }) {
                 </div>
 
                 <div className='popup-actions'>
-                    <button onClick={deletePopup} className='popup-action'>
+                    <button onClick={deleteModal} className='popup-action'>
                         Cancel
                     </button>
 
-                    <button onClick={deletePost} className='popup-action popup-action-continue'>
-                        Continue
+                    <button onClick={removePost} className='popup-action popup-action-continue'>
+                        Delete
                     </button>
                 </div>
             </div>

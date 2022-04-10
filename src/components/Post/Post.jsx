@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import PostSwiper from "./PostSwiper/PostSwiper";
 import PostAction from "./PostAction/PostAction";
-import { useDispatch } from "react-redux";
-import { deletePost } from "../../store/postReducer";
 
 import "./post.css";
 
-function Post({ post }) {
+function Post({ post, deleteModal, getPostId }) {
     const [openPanel, setOpenPanel] = useState(false);
-    const dispatch = useDispatch();
 
     function handlePanel() {
         setOpenPanel((prev) => !prev);
     }
 
-    function removePost(id) {
-        dispatch(deletePost(id));
+    function openModal(id) {
+        deleteModal();
+        handlePanel();
+        getPostId(id);
     }
 
     return (
@@ -34,9 +33,16 @@ function Post({ post }) {
                     </div>
                 </figure>
 
-                <button className='post-option' onClick={() => removePost(post._id)}>
+                <button className='post-option' onClick={handlePanel}>
                     <i className='ri-more-2-fill'></i>
                 </button>
+
+                {openPanel && (
+                    <div className='post-panel'>
+                        <button>Edit Post</button>
+                        <button onClick={() => openModal(post._id)}>Delete Post</button>
+                    </div>
+                )}
             </div>
 
             <div>

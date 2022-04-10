@@ -28,10 +28,15 @@ const postSlice = createSlice({
         postRequestFailed: (posts, action) => {
             posts.loading = false;
         },
+
+        postDeleted: (posts, action) => {
+            const id = posts.list.findIndex(({ _id }) => _id === action.payload);
+            posts.list.splice(id, 1);
+        },
     },
 });
 
-const { postAdded, postReceived, postRequested, postRequestFailed } = postSlice.actions;
+const { postAdded, postReceived, postRequested, postRequestFailed, postDeleted } = postSlice.actions;
 
 const url = "/posts";
 
@@ -40,7 +45,7 @@ export const loadPosts = () => (dispatch, getState) => {
 
     const difInMinutes = moment().diff(moment(lastFetch), "minutes");
 
-    // if (difInMinutes < 1) return;
+    // if (difInMinutes < 10) return;
 
     return dispatch(
         apiCallBegan({
@@ -52,8 +57,16 @@ export const loadPosts = () => (dispatch, getState) => {
     );
 };
 
-export const deletePost = (postId) => (dispatch, getState) => {
-    console.log(postId);
+export const deletePost = (postId) => async (dispatch, getState) => {
+    dispatch(postDeleted(postId));
+
+    return dispatch(
+        apiCallBegan({
+            url: `${url}/${postId}`,
+            method: "DELETE",
+            onError: postRequestFailed.type,
+        })
+    );
 };
 
 export const addPost = (postData) => async (dispatch, getState) => {

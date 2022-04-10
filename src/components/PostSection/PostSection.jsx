@@ -10,13 +10,23 @@ import "./postsection.css";
 
 function PostSection() {
     const [posts, setPosts] = useState(null);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [postId, setPostId] = useState(null);
+    const postsState = useSelector((state) => state.entities.posts);
     const dispatch = useDispatch();
     const store = configureStore();
-    const postsState = useSelector((state) => state.entities.posts);
 
     useEffect(() => {
         dispatch(loadPosts());
     }, []);
+
+    function handleDeleteModal() {
+        setDeleteModal((prev) => !prev);
+    }
+
+    function getPostId(id) {
+        setPostId(id);
+    }
 
     if (postsState.loading)
         return (
@@ -27,8 +37,12 @@ function PostSection() {
 
     return (
         <section className='post-section'>
+            {deleteModal && <ModalPopup deleteModal={handleDeleteModal} postId={postId} />}
+
             {postsState.list.length ? (
-                postsState?.list.map((post) => <Post post={post} key={post._id} />)
+                postsState?.list.map((post) => (
+                    <Post post={post} key={post._id} deleteModal={handleDeleteModal} getPostId={getPostId} />
+                ))
             ) : (
                 <PostLoader />
             )}

@@ -15,15 +15,17 @@ function PostForm() {
         selectedFiles: [],
     });
     const [cptIndicator, setCptIndicator] = useState(postData.caption.length);
-    const [uploadProcess, setUploadProcess] = useState({ state: false, text: "" });
     const { loading } = useSelector((state) => state.entities.posts);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCptIndicator(postData.caption.length);
     }, [postData.caption.length]);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        console.log(loading);
+    }, [loading]);
 
     function backButton() {
         navigate("/");
@@ -35,12 +37,9 @@ function PostForm() {
 
         if (postData.caption.length || postData.selectedFiles.length) {
             dispatch(addPost(postData));
-            setUploadProcess({ ...uploadProcess, state: loading, text: "Uploading" });
-            console.log(postData);
+            setPostData({ ...postData, caption: "", selectedFiles: [] });
         }
     }
-
-    // console.log()
 
     function previewFiles(e) {
         let files = e.target.files;
@@ -73,7 +72,7 @@ function PostForm() {
     function PostFromNotif() {
         return (
             <div className='post-form-notif'>
-                <p>{uploadProcess.text}</p>
+                <p>Uploading</p>
             </div>
         );
     }
@@ -99,7 +98,7 @@ function PostForm() {
             <SecondaryNavbar title={"Write Post"} backButton={backButton} />
 
             <div className='post-form'>
-                {uploadProcess.state && <PostFromNotif />}
+                {loading && <PostFromNotif />}
 
                 <div className='caption-indicator'>{cptIndicator} / 250</div>
 
