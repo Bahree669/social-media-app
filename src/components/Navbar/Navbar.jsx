@@ -77,11 +77,13 @@ function Navbar() {
                     <div onClick={handleMenu} className='header-backdrop'></div>
                 </div>
 
+                {/* {user && ( */}
                 <Link to={"/makepost"} className='navbar-add-post'>
                     <button>
                         <i className='ri-edit-2-line'></i>
                     </button>
                 </Link>
+                {/* )} */}
             </nav>
         </header>
     );

@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost } from "../../store/postReducer";
+
 import SecondaryNavbar from "../Navbar/SecondaryNavbar";
 import Thumbnails from "./Thumbnails/Thumbnails";
 
@@ -13,6 +16,8 @@ function PostForm() {
     });
     const [cptIndicator, setCptIndicator] = useState(postData.caption.length);
     const [uploadProcess, setUploadProcess] = useState({ state: false, text: "" });
+    const { loading } = useSelector((state) => state.entities.posts);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setCptIndicator(postData.caption.length);
@@ -28,8 +33,14 @@ function PostForm() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        console.log(postData);
+        if (postData.caption.length || postData.selectedFiles.length) {
+            dispatch(addPost(postData));
+            setUploadProcess({ ...uploadProcess, state: loading, text: "Uploading" });
+            console.log(postData);
+        }
     }
+
+    // console.log()
 
     function previewFiles(e) {
         let files = e.target.files;

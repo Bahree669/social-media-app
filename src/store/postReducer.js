@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import moment from "moment";
 import { apiCallBegan, apiCallFailed } from "./apiActions";
 
@@ -39,11 +40,28 @@ export const loadPosts = () => (dispatch, getState) => {
 
     const difInMinutes = moment().diff(moment(lastFetch), "minutes");
 
-    if (difInMinutes < 10) return;
+    // if (difInMinutes < 1) return;
 
     return dispatch(
         apiCallBegan({
             url,
+            onStart: postRequested.type,
+            onSuccess: postReceived.type,
+            onError: postRequestFailed.type,
+        })
+    );
+};
+
+export const deletePost = (postId) => (dispatch, getState) => {
+    console.log(postId);
+};
+
+export const addPost = (postData) => async (dispatch, getState) => {
+    return dispatch(
+        apiCallBegan({
+            url,
+            method: "POST",
+            data: postData,
             onStart: postRequested.type,
             onSuccess: postReceived.type,
             onError: postRequestFailed.type,

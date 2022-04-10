@@ -26,6 +26,10 @@
     resize: none;
 }
 
+.post-form form textarea:focus {
+    outline: solid 2px var(--blue);
+}
+
 .post-form-image {
     display: none;
 }

@@ -11,9 +11,19 @@
 
 .post-action-button {
     display: flex;
+    align-items: center;
     gap: .1em;
-    font-size: var(--body-font);
     color: var(--black);
     background: none;
     border: none;
+    cursor: pointer;
+}
+
+.post-action-button p {
+    font-size: .7rem;
+    font-family: var(--font-sans);
+}
+
+.post-action-button i {
+    font-size: 1.5rem;
 }

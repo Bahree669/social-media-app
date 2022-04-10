@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { loadPosts } from "../../store/postReducer";
+import { loadPosts, deletePost } from "../../store/postReducer";
+import { useDispatch, useSelector } from "react-redux";
 import configureStore from "../../store/configureStore";
 
 import Post from "../Post/Post";
@@ -8,25 +9,16 @@ import { PostLoader } from "../Loadings";
 import "./postsection.css";
 
 function PostSection() {
-    const [showPopup, setShowPopup] = useState(false);
     const [posts, setPosts] = useState(null);
-
+    const dispatch = useDispatch();
     const store = configureStore();
-    store.dispatch(loadPosts());
+    const postsState = useSelector((state) => state.entities.posts);
 
     useEffect(() => {
-        const unsubscribe = store.subscribe(() => {
-            const state = store.getState();
-
-            setPosts(state.entities.posts.list);
-        });
+        dispatch(loadPosts());
     }, []);
 
-    function handleOpenPopup() {
-        setShowPopup((prev) => !prev);
-    }
-
-    if (!posts)
+    if (postsState.loading)
         return (
             <div className='post-section'>
                 <PostLoader />
@@ -35,10 +27,8 @@ function PostSection() {
 
     return (
         <section className='post-section'>
-            {showPopup && <ModalPopup deletePopup={handleOpenPopup} />}
-
-            {posts.length ? (
-                posts?.map((post) => <Post post={post} key={post._id} deletePopup={handleOpenPopup} />)
+            {postsState.list.length ? (
+                postsState?.list.map((post) => <Post post={post} key={post._id} />)
             ) : (
                 <PostLoader />
             )}

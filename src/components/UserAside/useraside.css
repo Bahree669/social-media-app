@@ -1,7 +1,7 @@
 .user-aside {
     background: var(--white);
     position: sticky;
-    top: 5em;
+    top: 4.5em;
     border: solid 1px var(--extra-light-grey);
 }
 
@@ -16,7 +16,7 @@
 .user-aside-menu {
     display: flex;
     flex-direction: column;
-    row-gap: 4em;
+    row-gap: 3em;
     padding: 1em;
 }
 

@@ -1,8 +1,14 @@
 import React from "react";
-
+import configureStore from "../../store/configureStore";
 import "./modalpopup.css";
 
-function ModalPopup({ deletePopup }) {
+function ModalPopup({ deletePopup, postId }) {
+    const store = configureStore();
+
+    function deletePost() {
+        console.log(postId);
+    }
+
     return (
         <div className='popup-backdrop'>
             <div className='popup-container'>
@@ -15,7 +21,8 @@ function ModalPopup({ deletePopup }) {
                     <button onClick={deletePopup} className='popup-action'>
                         Cancel
                     </button>
-                    <button onClick={deletePopup} className='popup-action popup-action-continue'>
+
+                    <button onClick={deletePost} className='popup-action popup-action-continue'>
                         Continue
                     </button>
                 </div>

@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import PostSwiper from "./PostSwiper/PostSwiper";
 import PostAction from "./PostAction/PostAction";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../store/postReducer";
 
 import "./post.css";
 
-function Post({ post, deletePopup }) {
+function Post({ post }) {
     const [openPanel, setOpenPanel] = useState(false);
+    const dispatch = useDispatch();
 
     function handlePanel() {
         setOpenPanel((prev) => !prev);
+    }
+
+    function removePost(id) {
+        dispatch(deletePost(id));
     }
 
     return (
@@ -27,7 +34,7 @@ function Post({ post, deletePopup }) {
                     </div>
                 </figure>
 
-                <button className='post-option' onClick={deletePopup}>
+                <button className='post-option' onClick={() => removePost(post._id)}>
                     <i className='ri-more-2-fill'></i>
                 </button>
             </div>
@@ -40,12 +47,7 @@ function Post({ post, deletePopup }) {
                         </div>
 
                         <PostSwiper image={post?.selectedFiles} />
-                        <PostAction
-                            comments={post?.comments}
-                            likes={post?.likes}
-                            withImage={true}
-                            caption={post?.caption}
-                        />
+                        <PostAction comments={post?.comments} likes={post?.likes} caption={post?.caption} />
                     </div>
                 ) : (
                     <div className='post-content'>

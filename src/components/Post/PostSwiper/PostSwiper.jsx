@@ -1,4 +1,5 @@
 import React from "react";
+import { nanoid } from "nanoid";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { A11y, Pagination } from "swiper";
 
@@ -20,10 +21,10 @@ function PostSwiper({ image }) {
                 modules={[A11y, Pagination]}
                 className='mySwiper'
             >
-                {image.map((c, i) => (
-                    <SwiperSlide key={i}>
+                {image.map((file) => (
+                    <SwiperSlide key={nanoid()}>
                         <div className='swiper-img'>
-                            <img src={c} />
+                            <img src={file.img} />
                         </div>
                     </SwiperSlide>
                 ))}
