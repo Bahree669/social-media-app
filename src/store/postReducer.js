@@ -43,9 +43,9 @@ const url = "/posts";
 export const loadPosts = () => (dispatch, getState) => {
     const { lastFetch } = getState().entities.posts;
 
-    const difInMinutes = moment().diff(moment(lastFetch), "minutes");
+    // const difInMinutes = moment().diff(moment(lastFetch), "minutes");
 
-    // if (difInMinutes < 10) return;
+    // if (difInMinutes < 5) return
 
     return dispatch(
         apiCallBegan({
@@ -81,11 +81,5 @@ export const addPost = (postData) => async (dispatch, getState) => {
         })
     );
 };
-
-// SELECTORS
-export const getAllPosts = createSelector(
-    (state) => state.entities.posts,
-    (posts) => posts
-);
 
 export default postSlice.reducer;

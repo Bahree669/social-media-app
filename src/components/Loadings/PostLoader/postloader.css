@@ -5,7 +5,7 @@
 }
 
 .post-loader {
-    background: var(--white);
+    background: var(--post-background);
     border: solid 1px var(--extra-light-grey);
 }
 

@@ -1,19 +1,17 @@
 .swiper {
     width: 100%;
-    height: 350px;
+    aspect-ratio: 1;
 }
 
 .swiper-slide {
     height: 100%;
     width: 100%;
     position: relative;
-    padding: 1em;
 }
 
 .swiper-img {
     width: 100%;
     height: 100%;
-    border-radius: 1em;
     overflow: hidden;
 }
 

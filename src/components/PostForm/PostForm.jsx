@@ -16,6 +16,7 @@ function PostForm() {
     });
     const [cptIndicator, setCptIndicator] = useState(postData.caption.length);
     const { loading } = useSelector((state) => state.entities.posts);
+    const user = JSON.parse(localStorage.getItem("profile"));
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -36,8 +37,10 @@ function PostForm() {
         e.preventDefault();
 
         if (postData.caption.length || postData.selectedFiles.length) {
-            dispatch(addPost(postData));
-            setPostData({ ...postData, caption: "", selectedFiles: [] });
+            if (user) {
+                dispatch(addPost({ ...postData, creator: { user: user.name, id: user.id, userName: user.userName } }));
+                setPostData({ ...postData, caption: "", selectedFiles: [] });
+            }
         }
     }
 
@@ -97,47 +100,53 @@ function PostForm() {
         <div className='post-form-container'>
             <SecondaryNavbar title={"Write Post"} backButton={backButton} />
 
-            <div className='post-form'>
-                {loading && <PostFromNotif />}
+            {user ? (
+                <div className='post-form'>
+                    {loading && <PostFromNotif />}
 
-                <div className='caption-indicator'>{cptIndicator} / 250</div>
+                    <div className='caption-indicator'>{cptIndicator} / 250</div>
+                    <form>
+                        <textarea
+                            name='caption'
+                            id='caption'
+                            placeholder='Write your moment...'
+                            cols='30'
+                            rows='7'
+                            maxLength={250}
+                            onChange={(e) => setPostData({ ...postData, caption: e.target.value })}
+                        ></textarea>
 
-                <form>
-                    <textarea
-                        name='caption'
-                        id='caption'
-                        placeholder='Write your moment...'
-                        cols='30'
-                        rows='7'
-                        maxLength={250}
-                        onChange={(e) => setPostData({ ...postData, caption: e.target.value })}
-                    ></textarea>
+                        <div className='post-form-content'>
+                            <div>
+                                <input
+                                    ref={fileElem}
+                                    className='post-form-image'
+                                    type='file'
+                                    label='image'
+                                    name='selectedFile'
+                                    multiple={true}
+                                    accept='image/*'
+                                    onChange={previewFiles}
+                                />
+                                <button type='button' className='post-form-image-button' onClick={imgInputField}>
+                                    <i className='ri-image-fill'></i>
+                                </button>
+                            </div>
 
-                    <div className='post-form-content'>
-                        <div>
-                            <input
-                                ref={fileElem}
-                                className='post-form-image'
-                                type='file'
-                                label='image'
-                                name='selectedFile'
-                                multiple={true}
-                                accept='image/*'
-                                onChange={previewFiles}
+                            <Thumbnails
+                                imgThumb={postData?.selectedFiles}
+                                removeImageFromState={removeImageFromState}
                             />
-                            <button type='button' className='post-form-image-button' onClick={imgInputField}>
-                                <i className='ri-image-fill'></i>
-                            </button>
                         </div>
 
-                        <Thumbnails imgThumb={postData?.selectedFiles} removeImageFromState={removeImageFromState} />
-                    </div>
-
-                    <button className='post-form-submit' type='submit' onClick={handleSubmit}>
-                        POST
-                    </button>
-                </form>
-            </div>
+                        <button className='post-form-submit' type='submit' onClick={handleSubmit}>
+                            POST
+                        </button>
+                    </form>
+                </div>
+            ) : (
+                <div className='post-form-no-img'>You need to have an account in order to create a post.</div>
+            )}
         </div>
     );
 }

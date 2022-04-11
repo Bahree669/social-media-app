@@ -1,27 +1,20 @@
 .post-action-container {
     padding: 1em 1.5em;
-    border-top: solid 1px var(--extra-light-grey);
+    display: flex;
+    justify-content: space-between;
 }
 
 .post-action {
     display: flex;
-    justify-content: space-around;
+    gap: 2em;
     align-items: center;
 }
 
 .post-action-button {
-    display: flex;
-    align-items: center;
-    gap: .1em;
-    color: var(--black);
+    color: var(--post-action-icon);
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.post-action-button p {
-    font-size: .7rem;
-    font-family: var(--font-sans);
 }
 
 .post-action-button i {

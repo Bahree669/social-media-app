@@ -1,145 +1,92 @@
 .header {
-    height: 4em;
-    background: var(--white);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-}
-
-.header-navigation {
-    height: inherit;
-    max-width: 800px;
-    margin: 0 auto;
+    background: var(--header-background);
+    display: flex;
+    flex-direction: column-reverse;
     position: relative;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5em;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-.header-action-container {
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    display: flex;
-    width: 100%;
-    z-index: 200;
-    transition: all .5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.header-action-container.open {
-    left: 0;
-}
-
-.header-menu {
-    background: var(--white);
-    width: 60%;
-}
-
-.header-menu-action {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-    padding: 1em 1em 2em 1em;
-    justify-content: space-between;
-    height: calc(100% - 10em);
-}
-
-.header-action-primary {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.header-action-primary div {
+.header-top {
+    background: var(--header-background);
     font-family: var(--font-sans);
-    font-size: var(--body-font);
-    text-transform: capitalize;
-    color: var(--black);
+    padding: .3em 1em;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    max-width: 500px;
+    transform: translateX(-50%);
+}
+
+.header-logo {
+    font-size: var(--heading-font);
+    color: var(--main-button-color);
+}
+
+.header-logout {
     display: flex;
     align-items: center;
-    gap: 1em;
-    background: var(--white);
-    padding: .5em;
-    border-radius: 10px;
+    color: var(--main-button-color);
+}
+
+.header-logout p {
+    font-size: var(--small-font);
+}
+
+.header-logout button {
+    border: none;
+    width: 40px;
+    aspect-ratio: 1;
+    font-size: 1.5em;
+    background: none;
     cursor: pointer;
+    color: var(--main-button-color);
 }
 
-.header-action-primary div:hover {
-    background: var(--super-light-grey);
-}
-
-.header-menu-avatar {
+.primary-navigation {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: var(--header-background);
+    z-index: 999;
     width: 100%;
-    height: 10rem;
-    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .2em 1.5em 1.5em 1.5em;
+    max-width: 500px;
+}
+
+@supports (backdrop-filter: blur(5px)) {
+    .primary-navigation {
+        background: #271b2dcb;
+        backdrop-filter: blur(5px);
+    }
+}
+
+.navigation-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    width: 1.5em;
+    aspect-ratio: 1;
     display: grid;
     place-content: center;
-    border-bottom: solid 1px var(--extra-light-grey);
+    color: var(--navigation-action);
 }
 
-.header-backdrop {
-    width: 40%;
-    background: none;
-    height: 100vh;
-    transition: all 2s ease-out;
+.navigation-post {
+    font-size: .9em;
+    border: solid 2px var(--navigation-action);
+    border-radius: 7px;
 }
 
-.header-action-container.open .header-backdrop {
-    background: rgba(0,0,0,.3);
-}
-
-.navbar-add-post {
-    position: absolute;
-    bottom: -80vh;
-    right: 1.5em;
-    z-index: 100;
-}
-
-.navbar-add-post button {
-    background: var(--blue);
-    border: none;
-    width: 60px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    font-size: 1.5em;
-    color: var(--white);
-}
-
-.header-menu-button {
-    background: var(--white);
-    border: none;
-    font-family: var(--font-sans);
-    font-size: var(--body-font);
-    padding: .2em;
-    border: solid 2px var(--red-error);
-    border-radius: 10px;
-}
-
-.header-action-btn {
-    border: none;
-    font-size: 1.4rem;
-    color: var(--blue);
-    background: none;
-}
-
-@media screen and (min-width: 600px) {
-    .header-action-container {
-        display: none;
-    }
-
-    .header-menu-avatar {
-        margin-right: 100%;
-    }
-
-    .header-action-btn {
-        display: none;
-    }
-
-    .header-navigation {
-        flex-direction: row;
-    }
+@media screen and (min-width: 900px) {
+    
 }

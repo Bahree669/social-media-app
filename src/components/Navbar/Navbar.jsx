@@ -2,22 +2,21 @@ import React, { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import decode from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../store/userReducer";
 
 import "./navbar.css";
-import BigAvatar from "../Avatar/BigAvatar";
 
 function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-    const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const token = user?.token;
-
         if (token) {
             const decodedToken = decode(token);
-
             if (decodedToken.exp * 1000 < new Date().getTime()) {
                 logOut();
             }
@@ -25,67 +24,65 @@ function Navbar() {
 
         const profile = JSON.parse(localStorage.getItem("profile"));
         setUser(profile);
-    }, [location]);
 
-    function handleMenu() {
-        setOpenMenu((prev) => !prev);
-    }
+        console.log(user);
+    }, []);
 
     function logOut() {
-        // dispatch({ type: "LOGOUT" });
-        setUser(null);
-
-        handleMenu();
+        dispatch(logOutUser());
         navigate("/auth");
     }
 
+    function authAction() {
+        if (user) {
+            logOut();
+        } else {
+            navigate("/auth");
+        }
+    }
+
     return (
-        <header className='header'>
-            <nav className='header-navigation'>
-                <button onClick={handleMenu} className='header-action-btn'>
-                    <i className='ri-settings-5-line'></i>
-                </button>
-
-                <div className='header-avatar'>
-                    <Avatar imageUrl={""} />
+        <div className='header'>
+            <nav aria-label='primary-navigation' className='primary-navigation'>
+                <div className='navigation-icon'>
+                    {location.pathname === "/" ? (
+                        <i className='ri-home-fill' style={{ fontSize: "1.19em" }}></i>
+                    ) : (
+                        <i className='ri-home-line'></i>
+                    )}
                 </div>
 
-                <div className={`header-action-container ${openMenu && "open"}`}>
-                    <div className='header-menu'>
-                        <div className='header-menu-avatar'>
-                            <BigAvatar imageUrl={""} />
-                        </div>
+                <div className='navigation-icon'>
+                    <i className='ri-compass-3-line' style={{ fontSize: "1.19em" }}></i>
+                </div>
 
-                        <div className='header-menu-action'>
-                            <div className='header-action-primary'>
-                                <div>
-                                    <i className='ri-user-3-fill'></i>
-                                    <p>profile</p>
-                                </div>
-                                <div>
-                                    <i className='ri-bookmark-line'></i>
-                                    <p>saved posts</p>
-                                </div>
-                            </div>
-
-                            <button className='header-menu-button' onClick={logOut}>
-                                {user ? "Log Out" : "Log In"} {user && <strong>{user.userName}</strong>}
-                            </button>
-                        </div>
+                <Link to={"/makepost"}>
+                    <div className='navigation-icon navigation-post'>
+                        <i className='ri-add-line'></i>
                     </div>
+                </Link>
 
-                    <div onClick={handleMenu} className='header-backdrop'></div>
+                <div className='navigation-icon'>
+                    <i className='ri-bookmark-line'></i>
                 </div>
 
-                {/* {user && ( */}
-                <Link to={"/makepost"} className='navbar-add-post'>
-                    <button>
-                        <i className='ri-edit-2-line'></i>
-                    </button>
+                <Link to={"/profile"}>
+                    <Avatar imageUrl={user?.profile_image} />
                 </Link>
-                {/* )} */}
             </nav>
-        </header>
+
+            <div className='header-top'>
+                <p className='header-logo'>Kilogram</p>
+
+                <div className='header-logout'>
+                    <p>{user ? "Log Out" : "Sign In"}</p>
+
+                    <button onClick={authAction}>
+                        <i className='ri-logout-circle-r-line'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
 

@@ -1,0 +1,57 @@
+.profile-page {
+    padding: 1em;
+    background: var(--auth-container);
+    min-height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5em;
+}
+
+.profile-name {
+    font-family: var(--font-sans);
+    color: var(--text-five);
+    font-size: var(--heading-font);
+    margin-top: 1em;
+}
+
+.profile-username {
+    font-family: var(--font-sans);
+    color: var(--text-four);
+    font-size: var(--small-font);
+    margin-bottom: 1em;
+}
+
+.profile-bio {
+    font-family: var(--font-sans);
+    font-size: var(--body-font);
+    color: var(--text-three);
+}
+
+.profile-content-control {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5em;
+    margin: 1em 0;
+}
+
+.content-button {
+    padding: .8em;
+    font-family: var(--font-sans);
+    font-size: var(--body-font);
+    background: var(--post-background);
+    color: var(--text-four);
+    border-radius: 10px;
+    border: none;
+}
+
+.content-button.active {
+    background: var(--main-button-color);
+    color: var(--text-five);
+}

@@ -1,32 +1,9 @@
 .home {
-    padding: 4.5em 0em 2em 0em;
-}
-
-.home-container {
-    max-width: 800px;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    gap: .5em;
-    margin: 0 auto;
-    height: 100%;
+    padding-top: 3.4em;
+    padding-bottom: 4.2em;
 }
 
 .home-post {
-    width: calc(800px - 300px);
-}
-
-.home-user {
-    width: calc(800px - 500px - .5em);
-}
-
-@media screen and (max-width: 590px) {
-    .home-user {
-        display: none;
-    }
-
-    .home-post {
-        width: 100%;
-        margin: 0 auto;
-    }
+    max-width: 500px;
+    margin: 0 auto;
 }

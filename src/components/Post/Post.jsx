@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import moment from "moment";
 import PostSwiper from "./PostSwiper/PostSwiper";
 import PostAction from "./PostAction/PostAction";
+import BigAvatar from "../Avatar/BigAvatar";
 
 import "./post.css";
 
 function Post({ post, deleteModal, getPostId }) {
     const [openPanel, setOpenPanel] = useState(false);
+    const user = JSON.parse(localStorage.getItem("profile"));
 
     function handlePanel() {
         setOpenPanel((prev) => !prev);
@@ -21,21 +24,25 @@ function Post({ post, deleteModal, getPostId }) {
         <div className='post-container'>
             <div className='post-container-top'>
                 <figure className='post-user'>
-                    <div className='post-avatar'>
-                        <img src={"https://randomuser.me/api/portraits/men/61.jpg"} alt='' />
-                    </div>
+                    <BigAvatar imageUrl={""} />
 
-                    <div>
-                        <figcaption className='post-username'>
-                            <p>John Doe</p>
-                            <small>@bigdaddy669</small>
+                    <div className='post-username'>
+                        <figcaption>
+                            <p className='post-name'>{post?.creator.user}</p>
+                            <small>{post?.creator.userName}</small>
                         </figcaption>
+
+                        <div aria-hidden='true' className='post-hour'>
+                            <small>{moment(post.createdAt).fromNow()}</small>
+                        </div>
                     </div>
                 </figure>
 
-                <button className='post-option' onClick={handlePanel}>
-                    <i className='ri-more-2-fill'></i>
-                </button>
+                {user?.id === post?.creator.id ? (
+                    <button className='post-option' onClick={handlePanel}>
+                        <i className='ri-more-2-fill'></i>
+                    </button>
+                ) : null}
 
                 {openPanel && (
                     <div className='post-panel'>
@@ -46,24 +53,15 @@ function Post({ post, deleteModal, getPostId }) {
             </div>
 
             <div>
-                {post?.selectedFiles?.length ? (
-                    <div className='post-content'>
-                        <div className='post-caption'>
-                            <p>{post?.caption}</p>
-                        </div>
-
-                        <PostSwiper image={post?.selectedFiles} />
-                        <PostAction comments={post?.comments} likes={post?.likes} caption={post?.caption} />
+                <div className='post-content'>
+                    <div className='post-caption'>
+                        <pre>{post?.caption}</pre>
                     </div>
-                ) : (
-                    <div className='post-content'>
-                        <div className='post-caption'>
-                            <p>{post?.caption}</p>
-                        </div>
 
-                        <PostAction comments={post?.comments} likes={post?.likes} withImage={false} />
-                    </div>
-                )}
+                    {post?.selectedFiles.length ? <PostSwiper image={post?.selectedFiles} /> : null}
+
+                    <PostAction user={user} comments={post?.comments} likes={post?.likes} withImage={false} />
+                </div>
             </div>
         </div>
     );

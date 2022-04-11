@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import Input from "./Input/Input";
 import SecondaryNavbar from "../Navbar/SecondaryNavbar";
 import { useNavigate } from "react-router-dom";
+import { logInUser, signUpUser, clearError, stopRedirect } from "../../store/userReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./authform.css";
 
 function AuthFom() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const user = localStorage.getItem("profile");
+    const { redirect, error } = useSelector((state) => state.entities.users);
     // login or sign up form state
     const [login, setLogin] = useState(true);
     const [formData, setFormData] = useState({
@@ -23,23 +28,32 @@ function AuthFom() {
     // state if the password does not match
     const [authError, setAuthError] = useState({ state: false, text: "" });
 
-    async function handleSubmit(e) {
+    useEffect(() => {
+        if (error.state) {
+            setTimeout(() => {
+                dispatch(clearError());
+            }, 3000);
+        }
+    }, [error]);
+
+    useEffect(() => {
+        if (redirect) {
+            dispatch(stopRedirect());
+
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
+        }
+    }, [redirect]);
+
+    function handleSubmit(e) {
         e.preventDefault();
 
-        // let data;
-        // if (!login) {
-        //     data = await dispatch(signUp(formData, navigate));
-        // } else {
-        //     data = await dispatch(signIn(formData, navigate));
-        // }
-
-        // if (data !== undefined && typeof data !== "object") {
-        //     setAuthError({ ...authError, state: true, text: data });
-
-        //     setTimeout(() => {
-        //         setAuthError({ ...authError, state: false, text: "" });
-        //     }, 5000);
-        // }
+        if (login) {
+            dispatch(logInUser(formData));
+        } else {
+            dispatch(signUpUser(formData));
+        }
     }
 
     function handleChange(e) {
@@ -84,12 +98,12 @@ function AuthFom() {
         });
     }
 
-    const AuthErrorComponent = () => {
+    const AuthErrorComponent = ({ text }) => {
         return (
             <div className='auth-error' aria-haspopup='true' aria-hidden={authError}>
-                <p>{authError.text}</p>
+                <p>{text}</p>
 
-                <button>
+                <button type='button'>
                     <i className='ri-close-circle-fill'></i>
                 </button>
             </div>
@@ -106,7 +120,7 @@ function AuthFom() {
                 <SecondaryNavbar title={login ? "Log In" : "Sign Up"} backButton={backHomebutton} />
 
                 <form onSubmit={handleSubmit}>
-                    {authError.state && <AuthErrorComponent />}
+                    {error.state && <AuthErrorComponent text={error.message} />}
 
                     {!login && (
                         <>

@@ -13,8 +13,9 @@ const apiCallMiddleware =
 
         next(action);
 
+        let response;
         try {
-            const response = await axios.request({
+            response = await axios.request({
                 baseURL: "http://localhost:5000",
                 url,
                 method,

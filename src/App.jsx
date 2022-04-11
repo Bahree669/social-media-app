@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Home, AuthForm, PostForm } from "./components";
+import { Navbar, Home, AuthForm, PostForm, ProfilePage } from "./components";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
                 />
                 <Route path='/auth' element={<AuthForm />} />
                 <Route path='/makepost' element={<PostForm />} />
+                <Route path='/profile' element={<ProfilePage />} />
             </Routes>
         </>
     );

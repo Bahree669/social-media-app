@@ -3,7 +3,22 @@
 
     display: flex;
     flex-direction: column;
-    row-gap: .5em;
+    row-gap: .2em;
+}
 
-    max-width: 500px;
+.no-post {
+    background: var(--white);
+    height: 100%;
+    padding: 1em;
+    font-family: var(--font-sans);
+}
+
+.no-post h1 {
+    font-size: var(--heading-font);
+    color: var(--black);
+}
+
+.no-post p {
+    font-size: var(--body-font);
+    color: var(--dark-grey);
 }

@@ -8,7 +8,7 @@
     font-family: var(--font-sans);
     text-transform: capitalize;
     font-size: var(--body-font);
-    color: var(--black);
+    color: var(--text-one);
     font-weight: bold;
 }
 
@@ -18,20 +18,20 @@
 }
 
 .auth-input > input {
-    background: var(--super-light-grey);
+    background: var(--auth-input-bg);
     border: none;
     width: 100%;
     border-radius: 10px;
 
     font-family: var(--font-sans);
-    color: var(--dark-grey);
+    color: var(--text-two);
 
     height: inherit;
     padding: 0 1em;
 }
 
 .auth-input > input:focus {
-    border: none;
+    outline: var(--input-focus);
 }
 
 .auth-input-button {
@@ -53,7 +53,7 @@
 }
 
 .auth-input-button > i {
-    color: var(--black-one);
+    color: var(--text-one);
     font-size: 1rem;
 }
 

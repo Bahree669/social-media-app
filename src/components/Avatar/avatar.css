@@ -1,7 +1,7 @@
 .avatar-img,
 .avatar-placeholder {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     flex-shrink: 0;
     border-radius: 50%;
     display: flex;
@@ -10,8 +10,8 @@
 }
 
 .avatar-placeholder {
-    background: var(--super-light-grey);
-    color: var(--dark-grey);
+    background: var(--profile-bg);
+    color: var(--profile-icon-color);
 }
 
 .avatar-img img {
@@ -22,8 +22,8 @@
 
 .big-avatar-img,
 .big-avatar-placeholder {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
     flex-shrink: 0;
     border-radius: 50%;
     display: flex;
@@ -32,12 +32,28 @@
 }
 
 .big-avatar-placeholder {
-    background: var(--super-light-grey);
-    color: var(--dark-grey);
+    background: var(--profile-bg);
+    color: var(--profile-icon-color);
 }
 
-.big-avatar-img img {
+.profile-avatar-img img {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.profile-avatar-img,
+.profile-avatar-placeholder {
+    height: 100px;
+    width: 100px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-avatar-placeholder {
+    background: var(--profile-bg);
+    color: var(--profile-icon-color);
 }

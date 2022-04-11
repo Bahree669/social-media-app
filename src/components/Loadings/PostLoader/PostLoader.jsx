@@ -34,7 +34,6 @@ function PostLoader() {
         <div className='post-loader-container'>
             <Loader />
             <Loader />
-            <Loader />
         </div>
     );
 }

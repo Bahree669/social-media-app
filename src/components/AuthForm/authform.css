@@ -3,7 +3,7 @@
 }
 
 .auth-container-left {
-    background: var(--white);
+    background: var(--auth-container);
     min-height: 100vh;
     max-width: 400px;
     margin: 0 auto;
@@ -21,8 +21,8 @@
     padding: .8em;
     border-radius: 10px;
     border: none;
-    background: var(--blue);
-    color: var(--white);
+    background: var(--main-button-color);
+    color: var(--text-five);
     font-family: var(--font-sans);
     font-weight: bold;
     font-size: var(--body-font);
@@ -31,18 +31,18 @@
 }
 
 .auth-submit:hover {
-    background: var(--blue-hover);
+    background: var(--main-button-hover);
 }
 
 .auth-submit:focus {
-    background: var(--blue-hover);
+    background: var(--main-button-hover);
 }
 
 .auth-change {
     border: none;
     background: none;
     font-family: var(--font-sans);
-    color: var(--dark-grey);
+    color: var(--text-two);
     font-size: var(--small-font);
     padding: 0.5em;
 }
@@ -53,7 +53,7 @@
     padding: 0.5em;
     font-family: var(--font-sans);
     font-size: var(--body-font);
-    color: var(--white);
+    color: var(--text-five);
 
     display: flex;
     justify-content: space-between;
@@ -64,7 +64,7 @@
     background: none;
     border: none;
     font-size: 1rem;
-    color: var(--white-one);
+    color: #fff;
 }
 
 .auth-container-right {
@@ -103,7 +103,7 @@
 
     .auth-container-right p {
         font-family: var(--font-sans);
-        color: var(--white);
+        color: #fff;
         font-size: 10vh;
         line-height: 0.8em;
     }

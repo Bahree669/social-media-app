@@ -1,26 +1,55 @@
+@font-face {
+    font-family: "Sans Fransisco";
+    src: url("./Assets/SF-Pro-Text-Medium.woff2") format("woff2"),
+        url("./Assets/SF-Pro-Text-Regular.woff2") format("woff2");
+}
+
 :root {
-    --blue: #1DA1F2;
-    --blue-hover: #32a9f3;
-    --black: #14171A;
-    --black-hover: #181b1f;
-    --dark-grey: #657786;
-    --light-grey: #AAB8C2;
-    --extra-light-grey: #E1E8ED;
-    --super-light-grey: #F5F8FA;
-    --white: #fff;
+    /* LIGHT THEME COLOR */
+    --main-button-color: #1DA1F2;
+    --main-button-hover: #32a9f3;
+
+    --secondary-button-color: #181b1f;
+    --secondary-button-hover: #14171A;
+
+    --text-one: #fcfdfd;
+    --text-two: #657786;
+    --text-three: #AAB8C2;
+    --text-four: #E1E8ED;
+    --text-five: #F5F8FA;
+
+    --header-background: #271b2d;
+    --navigation-action: #1DA1F2;
+
+    --post-background: #32283c;
+    --post-panel-color: #1DA1F2;
+
+    --post-panel-bg: #32283c;
+    --post-panel-bg-hover: #281f31;
+
+    --post-action-icon: #1da1f2;
+
+    --profile-bg: #E1E8ED;
+    --profile-icon-color: #181b1f;
+
+    --body-background: #0f0f14;
     
     --red-error: rgb(226, 0, 0);
     --green-success: rgb(0, 175, 0);
 
-    --accent-color: #fcb74;
+    --auth-container: #271b2d;
+    --auth-input-bg: #32283c;
+    --input-focus: solid 2px #32a9f3;
 
-    --body-font: 16px;
+    --input-img-bg: var(--post-background);
+    --input-img-icon: var(--main-button-color);
+    --input-indicator: #32283c;
+
+    --font-sans: "Sans Fransisco";
     --body-font: .9rem;
-    --heading-font: 18px;
     --heading-font: 1.2rem;
     --small-font: .8rem;
 
-    --font-sans: "Poppins";
     --border-style: solid 1px rgb(185, 185, 185);
 }
 
@@ -30,26 +59,29 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
-    background: var(--super-light-grey);
+    background: var(--body-background);
 }
 
 /* TYPOGRAPHY */
-.body-font {
-    color: var(--black-two);
+.post-name {
     font-family: var(--font-sans);
+    color: var(--text-one);
     font-size: var(--body-font);
 }
 
-.small-font {
+.post-hour {
     font-family: var(--font-sans);
-    color: var(--black-three);
+    color: var(--text-three);
     font-size: var(--small-font);
 }
 
-.heading-font {
+.post-username {
     font-family: var(--font-sans);
-    color: var(--black-one);
-    font-size: var(--heading-font);
-    font-weight: bold;
+    color: var(--text-three);
+    font-size: var(--body-font);
 }

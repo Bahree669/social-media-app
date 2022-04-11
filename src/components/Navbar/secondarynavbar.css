@@ -1,4 +1,3 @@
-/* secondary navigation */
 .secondary-nav {
     margin-bottom: 3em;
 }
@@ -17,7 +16,7 @@
     background: none;
     font-family: var(--font-sans);
     font-size: 1.2rem;
-    color: var(--dark-grey);
+    color: var(--main-button-color);
     cursor: pointer;
 }
 
@@ -25,7 +24,7 @@
     font-family: var(--font-sans);
     font-size: var(--heading-font);
     font-weight: bold;
-    color: var(--black);
+    color: var(--text-one);
 }
 
 .secondary-nav-container div {

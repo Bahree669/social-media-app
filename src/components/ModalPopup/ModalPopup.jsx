@@ -16,7 +16,7 @@ function ModalPopup({ deleteModal, postId }) {
             <div className='popup-container'>
                 <div className='popup-text'>
                     <h1>Delete Content</h1>
-                    <p className='body-font'>You are about to delete this post, are you sure?</p>
+                    <p>You are about to delete this post, are you sure?</p>
                 </div>
 
                 <div className='popup-actions'>

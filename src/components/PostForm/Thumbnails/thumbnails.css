@@ -10,7 +10,7 @@
     height: 50px;
     aspect-ratio: 1;
     overflow: hidden;
-    background: var(--super-light-grey);
+    background: var(--post-background);
     border-radius: 10px;
     position: relative;
 }
@@ -36,7 +36,7 @@
 }
 
 .post-thumbnails-caption {
-    color: var(--dark-grey);
+    color: var(--text-four);
     font-family: var(--font-sans);
     font-size: .7rem;
     display: flex;
